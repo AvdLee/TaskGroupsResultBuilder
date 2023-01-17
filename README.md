@@ -1,4 +1,6 @@
 # TaskGroupsResultBuilder
+***Make sure to read my article on TaskGroups before exploring this project: [Task Groups in Swift explained with code examples](https://www.avanderlee.com/concurrency/task-groups-in-swift/).***
+
 This project demonstrates how you can use a [@resultBuilder](https://www.avanderlee.com/swift/result-builders/) in combination with TaskGroup.
 
 ### Example

@@ -67,7 +67,6 @@ struct ContentView: View {
             }
         }
         print("Received: \(names)") // Received: ["Antoine", "Maaike", "Sep"]
-
     }
 
 //    func taskGroupExampleFour() async throws -> [String] {

@@ -42,7 +42,11 @@ struct TaskBuilder {
             await withTaskGroup(of: Success.self, returning: [Success].self) { taskGroup in
                 tasks.forEach { task in
                     taskGroup.addTask {
-                        await task.value
+                        await withTaskCancellationHandler {
+                            await task.value
+                        } onCancel: {
+                            task.cancel()
+                        }
                     }
                 }
 
@@ -55,5 +59,10 @@ struct TaskBuilder {
 }
 
 func withTaskGroup<Success: Sendable>(@TaskBuilder builder: () -> Task<[Success], Never>) async -> [Success] {
-    await builder().value
+    let task = builder()
+    return await withTaskCancellationHandler {
+        await task.value
+    } onCancel: {
+        task.cancel()
+    }
 }
